@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+
+<body>
+  <script type="text/javascript">
+    var bankAccount = {
+      owner: "Annie",
+      type: "Savings",
+      balance: 400,
+      withdraw: function(amount) {
+        this.balance = this.balance - amount; // this is referring to the object(which is bankAccount)
+      },
+      deposit: function(amount) {
+        this.balance = this.balance + amount;
+      }
+  }
+
+//This is the constructor
+  function BankAccount(owner, type) {
+    this.owner = owner;
+    this.type = type;
+    this.balance = 0;
+
+    this.withdraw = function(amount) {
+      this.balance = this.balance - amount;
+    };
+
+    this.deposit = function(amount) {
+      this.balance = this.balance + amount;
+    };
+  }
+
+  </script>
+
+</body>
+
+</html>

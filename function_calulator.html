@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    var resultsElements;
+
+    function setDefaultText() {
+      var i;
+      for (i = 0; i < resultsElements.length; i++) {
+        var element = resultsElements[i];
+        element.innerText = element.getAttribute("function") + "(x) = ";
+      }
+    }
+
+  function getUserinput() {
+    var rawValue = document.getElementById("userInput").value.trim();
+
+    if (rawValue.length == 0) {
+      throw "You must enter a number."
+    }
+
+    var num = Number(rawValue);
+    if (isNaN(num)) {
+      throw rawValue + " is not a number."
+    }
+
+    return num;
+
+  }
+
+  function calculateResults() {
+    try {
+      var x = getUserinput();
+    } catch(e) {
+      alert("Error: " + e)
+      return;
+    }
+
+
+  setDefaultText();
+
+  var i;
+  for (i = 0; i < resultsElements.length; i++) {
+    var element = resultsElements[i];
+    var functionName = element.getAttribute("function");
+    var func = Math[functionName];
+    var result = func(x);
+    element.innerText = element.innerText + " " + result;
+
+  }
+}
+
+window.onload = function() {
+    resultsElements = document.getElementsByClassName("result");
+    setDefaultText();
+      document.getElementById("btnCalculate").addEventListener("click", calculateResults);
+};
+</script>
+</head>
+
+  <body>
+    <h1>Function Calculator</h1>
+
+    x = <input type="text" id="userInput"></input>
+    <button id="btnCalculate">Calculate</button>
+
+    <br>
+    <br>
+
+    <p class = "result" function="sin"></p>
+    <p class = "result" function="cos"></p>
+    <p class = "result" function="tan"></p>
+
+
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+    var numClicks = 0; //count how many times user clicked on the title
+
+    function titleClicked() {
+      numClicks++; //increcement numClicks by 1
+      document.getElementById("title").innerText = "numClicks=" + numClicks;
+    }
+
+    function mouseEnter(event) {
+      event.target.innerText = event.target.innerText + " *HOVER*";
+    }
+
+    function mouseLeave(event) {
+      event.target.innerText = event.target.innerText.replace(" *HOVER*", "");
+    }
+
+    window.onload = function() {
+      document.getElementById("title").addEventListener("click", titleClicked);
+      var lis = document.getElementsByTagName("li");
+      var i;
+      for (i = 0; i < lis.length; i++) {
+        var li = lis[i];
+        li.addEventListener("mouseenter", mouseEnter);
+        li.addEventListener("mouseleave", mouseLeave);
+      }
+    };
+    </script>
+  </head>
+
+  <body>
+    <h1 id="title">Title</h1>
+    <p class="paragraph">Paragraph text 1</p>
+    <p class="paragraph">Paragraph text 2</p>
+
+    <input type="text"></input>
+
+    <ul>
+      <li>List item 1</li>
+      <li>List item 2</li>
+      <li>List item 3</li>
+      <li>List item 4</li>
+    </ul>
+
+  </body>
+</html>
